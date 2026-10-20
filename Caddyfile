@@ -1,0 +1,37 @@
+# Raptor — site provisório
+#
+# Uso local:
+#   caddy run --config Caddyfile
+#
+# Publicação:
+#   SITE_ADDRESS=raptor.seudominio.com.br SITE_ROOT=/var/www/raptor caddy run --config Caddyfile
+#
+# Com SITE_ADDRESS definido, o Caddy obtém o certificado HTTPS automaticamente.
+
+{$SITE_ADDRESS::8080} {
+	root * {$SITE_ROOT:.}
+	encode zstd gzip
+	file_server
+
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=3600"
+
+	# Capturas de tela dos projetos (arquivos pesados e estáveis)
+	@project_media path /projects/*
+	header @project_media Cache-Control "public, max-age=86400"
+
+	# Páginas de projeto: /projetos/<slug>/ resolvidas pelo index.html da pasta
+	@case_pages path /projetos/*
+	header @case_pages Cache-Control "no-cache"
+
+	@documents path / /index.html
+	header @documents Cache-Control "no-cache"
+
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "SAMEORIGIN"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+}
