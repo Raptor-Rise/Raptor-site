@@ -6,8 +6,12 @@
  */
 window.RAPTOR_CONFIG = {
   whatsapp: {
-    // PENDENTE: número comercial no formato internacional, apenas dígitos.
-    // Exemplo: "5511999999999" (55 + DDD + número).
+    // Link curto usado em todos os CTAs de WhatsApp do site.
+    // Quando "url" está preenchido, ele é usado como está (sem concatenar texto).
+    url: "https://wa.link/l9u1pw",
+
+    // Alternativa: número comercial no formato internacional, apenas dígitos.
+    // Exemplo: "5521999999999" (55 + DDD + número). Usado só se "url" estiver vazio.
     number: "",
     message: "Olá! Vim pelo site da Raptor e gostaria de conversar sobre um projeto.",
   },

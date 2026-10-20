@@ -40,11 +40,13 @@ O `file_server` do Caddy entrega o `index.html` da pasta automaticamente.
 
 Edite `assets/config.js` e preencha:
 
-- `whatsapp.number`: número comercial com DDI e DDD, apenas dígitos (ex.: `5511999999999`);
+- `whatsapp.url`: link completo de WhatsApp (tem prioridade; ex.: `https://wa.link/l9u1pw`);
+- `whatsapp.number`: alternativa ao link, com DDI e DDD, apenas dígitos (ex.: `5521999999999`);
+- `whatsapp.message`: texto pré-preenchido, aplicado somente quando o link é gerado a partir do número;
 - `email`: e-mail comercial;
 - `social.linkedin`, `social.instagram`, `social.github`: URLs completas dos perfis.
 
-Enquanto o WhatsApp não for configurado, os CTAs exibem um aviso na home e, nas páginas de projeto, direcionam para a seção de contato da home. E-mail e redes sociais só aparecem quando preenchidos.
+Enquanto nenhum dos dois campos de WhatsApp estiver configurado, os CTAs exibem um aviso na home e, nas páginas de projeto, direcionam para a seção de contato da home. E-mail e redes sociais só aparecem quando preenchidos.
 
 ## Logos de empresas e parceiros
 

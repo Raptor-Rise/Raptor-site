@@ -8,9 +8,12 @@
 
   var whatsappNumber = String(whatsapp.number || "").replace(/\D+/g, "");
   var whatsappMessage = String(whatsapp.message || "").trim();
-  var whatsappUrl = whatsappNumber
-    ? "https://wa.me/" + whatsappNumber + (whatsappMessage ? "?text=" + encodeURIComponent(whatsappMessage) : "")
-    : null;
+  var whatsappLink = String(whatsapp.url || "").trim();
+  var whatsappUrl = whatsappLink
+    ? whatsappLink
+    : whatsappNumber
+      ? "https://wa.me/" + whatsappNumber + (whatsappMessage ? "?text=" + encodeURIComponent(whatsappMessage) : "")
+      : null;
 
   var email = String(config.email || "").trim();
   var emailUrl = email ? "mailto:" + email : null;
