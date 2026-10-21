@@ -714,6 +714,16 @@ h2 {
   border-left: 1px solid var(--line);
 }
 
+/*
+ * Com seis serviços, as linhas do grid passam a compartilhar a mesma altura.
+ * Assim títulos longos ou descrições maiores não desalinham a seção.
+ */
+@media (min-width: 721px) {
+  .services {
+    grid-auto-rows: 1fr;
+  }
+}
+
 .service {
   position: relative;
   padding: clamp(28px, 3.4vw, 42px);
