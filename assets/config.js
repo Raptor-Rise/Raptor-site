@@ -27,6 +27,18 @@ window.RAPTOR_CONFIG = {
   },
 
   /**
+   * Google Analytics 4.
+   *
+   * O Analytics permanece totalmente inativo enquanto o Measurement ID
+   * estiver vazio. Use o identificador do fluxo da Web no formato G-XXXXXXXXXX.
+   * O script do Google só é carregado depois do consentimento do visitante.
+   */
+  analytics: {
+    measurementId: "G-0BZCZ6JEVT",
+    consentStorageKey: "raptor_analytics_consent_v1",
+  },
+
+  /**
    * Logos de empresas e parceiros.
    *
    * A divulgação pública depende de autorização de cada empresa.

@@ -27,6 +27,7 @@ caddy run --config Caddyfile
 ├── assets/
 │   ├── styles.css              # estilos compartilhados (site + cases)
 │   ├── main.js                 # menu, contato, galeria ampliada, navegação
+│   ├── analytics.js            # consentimento, GA4 e eventos de conversão
 │   ├── config.js               # contato e autorização de logos
 │   └── projects.js             # lista de projetos usada em "Outros projetos"
 ├── projects/                   # capturas de tela e logos originais
@@ -47,6 +48,32 @@ Edite `assets/config.js` e preencha:
 - `social.linkedin`, `social.instagram`, `social.github`: URLs completas dos perfis.
 
 Enquanto nenhum dos dois campos de WhatsApp estiver configurado, os CTAs exibem um aviso na home e, nas páginas de projeto, direcionam para a seção de contato da home. E-mail e redes sociais só aparecem quando preenchidos.
+
+## Configurar Google Analytics 4
+
+O site possui integração com GA4 em `assets/analytics.js`, usando consentimento
+básico: nenhum script ou dado é enviado ao Google antes de o visitante aceitar os
+cookies analíticos.
+
+1. No Google Analytics, crie uma propriedade GA4 e um fluxo de dados da Web.
+2. Copie o Measurement ID do fluxo, no formato `G-XXXXXXXXXX`.
+3. Preencha `analytics.measurementId` em `assets/config.js`.
+4. Publique e valide uma visita consentida nos relatórios Tempo real e DebugView.
+5. Em **Administrador → Eventos**, marque `contact_click` como evento principal,
+   caso o clique para iniciar contato seja a conversão desejada.
+
+Enquanto `measurementId` estiver vazio ou fora do formato `G-...`, a integração,
+o banner e o botão de preferências permanecem inativos. Os eventos implementados são:
+
+- `page_view`: visualização de cada página, emitida pelo próprio GA4;
+- `contact_click`: clique em WhatsApp ou e-mail;
+- `select_content`: abertura de um projeto;
+- `gallery_open`: abertura de uma imagem da galeria.
+
+O registro local `raptor_analytics_consent_v1` guarda somente a escolha entre
+aceitar e rejeitar. O visitante pode alterá-la pelo rodapé ou em
+`privacidade.html`. Recursos de anúncios, personalização e Google Signals ficam
+desativados no código.
 
 ## Logos de empresas e parceiros
 
