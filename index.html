@@ -105,14 +105,34 @@
 
             <div class="hero__stage">
               <svg class="hero__geometry" viewBox="0 0 520 520" fill="none" preserveAspectRatio="xMidYMid meet">
-                <path d="M260 44 476 154v212L260 476 44 366V154L260 44Z" stroke="rgba(241,246,235,.075)"/>
-                <path d="M260 96 432 184v152L260 424 88 336V184L260 96Z" stroke="rgba(241,246,235,.05)"/>
-                <path d="M44 366 476 154" stroke="rgba(139,218,10,.22)"/>
-                <path d="M88 336 432 184" stroke="rgba(139,218,10,.10)"/>
+                <defs>
+                  <filter id="hero-node-glow" x="-300%" y="-300%" width="700%" height="700%">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path class="hero__circuit hero__circuit--outer" d="M260 44 476 154v212L260 476 44 366V154L260 44Z" stroke="rgba(241,246,235,.075)"/>
+                <path class="hero__circuit hero__circuit--inner" d="M260 96 432 184v152L260 424 88 336V184L260 96Z" stroke="rgba(241,246,235,.05)"/>
+                <path class="hero__circuit hero__circuit--signal" d="M44 366 476 154" stroke="rgba(139,218,10,.22)"/>
+                <path class="hero__circuit hero__circuit--signal-secondary" d="M88 336 432 184" stroke="rgba(139,218,10,.10)"/>
                 <path d="M260 44v42M260 434v42M44 154h28M448 154h28M44 366h28M448 366h28" stroke="rgba(241,246,235,.18)"/>
-                <rect x="255" y="49" width="10" height="10" fill="#8bda0a" fill-opacity=".55"/>
+                <g class="hero__moving-points" filter="url(#hero-node-glow)">
+                  <circle class="hero__moving-point hero__moving-point--one" r="3.5">
+                    <animateMotion dur="9s" repeatCount="indefinite" path="M260 44 476 154v212L260 476 44 366V154L260 44Z"/>
+                  </circle>
+                  <circle class="hero__moving-point hero__moving-point--two" r="2.6">
+                    <animateMotion dur="6.8s" begin="-2.4s" repeatCount="indefinite" path="M260 96 88 184v152l172 88 172-88V184L260 96Z"/>
+                  </circle>
+                  <circle class="hero__moving-point hero__moving-point--three" r="2.2">
+                    <animateMotion dur="4.8s" begin="-1.6s" repeatCount="indefinite" path="M44 366 476 154 44 366"/>
+                  </circle>
+                </g>
+                <rect class="hero__anchor hero__anchor--active" x="255" y="49" width="10" height="10" fill="#8bda0a" fill-opacity=".55"/>
                 <rect x="255" y="461" width="10" height="10" fill="rgba(241,246,235,.22)"/>
-                <circle cx="476" cy="154" r="3" fill="#8bda0a"/>
+                <circle class="hero__anchor hero__anchor--active hero__anchor--delayed" cx="476" cy="154" r="3" fill="#8bda0a"/>
               </svg>
               <picture class="hero__mark">
                 <source srcset="assets/logo-mark.webp" type="image/webp">

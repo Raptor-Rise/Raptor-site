@@ -598,6 +598,28 @@ h2 {
   height: 100%;
 }
 
+.hero__circuit {
+  vector-effect: non-scaling-stroke;
+}
+
+.hero__moving-point {
+  --node-opacity: 1;
+  fill: var(--green);
+}
+
+.hero__moving-point--two {
+  --node-opacity: 0.72;
+}
+
+.hero__moving-point--three {
+  --node-opacity: 0.48;
+}
+
+.hero__anchor {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 .hero__mark {
   position: relative;
   z-index: 1;
@@ -660,6 +682,65 @@ h2 {
 
   .hero__visual {
     animation: hero-visual-in 1s 0.12s var(--ease) both;
+  }
+
+  .hero__circuit--signal,
+  .hero__circuit--signal-secondary {
+    animation: hero-circuit-flow 5.5s linear infinite;
+    stroke-dasharray: 3 12 54 8;
+  }
+
+  .hero__circuit--signal-secondary {
+    animation-duration: 7s;
+    animation-direction: reverse;
+  }
+
+  .hero__moving-point {
+    animation: hero-node-breathe 1.9s ease-in-out infinite;
+  }
+
+  .hero__moving-point--two {
+    animation-delay: -0.7s;
+  }
+
+  .hero__moving-point--three {
+    animation-delay: -1.2s;
+  }
+
+  .hero__anchor--active {
+    animation: hero-anchor-pulse 2.8s ease-in-out infinite;
+  }
+
+  .hero__anchor--delayed {
+    animation-delay: -1.4s;
+  }
+}
+
+@keyframes hero-circuit-flow {
+  to {
+    stroke-dashoffset: -77;
+  }
+}
+
+@keyframes hero-node-breathe {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+  48% {
+    opacity: var(--node-opacity);
+  }
+}
+
+@keyframes hero-anchor-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.84);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.18);
   }
 }
 
@@ -1340,6 +1421,10 @@ h2 {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .hero__moving-points {
+    display: none;
   }
 }
 
